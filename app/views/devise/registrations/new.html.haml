@@ -1,9 +1,11 @@
-%h2 Sign up
-= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, :required => true, :autofocus => true
-    = f.input :password, :required => true
-    = f.input :password_confirmation, :required => true
-    = f.button :submit, "Sign up"
-= render "devise/shared/links"
+.form-signin
+  .form-signin-heading 
+  %h2 Sign up
+  = simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+    = f.error_notification
+    .form-inputs
+      = f.input :email, :required => true, :autofocus => true
+      = f.input :password, :required => true
+      = f.input :password_confirmation, :required => true
+      = f.button :submit, "Sign up", class: 'btn-primary'
+  = render "devise/shared/links"
