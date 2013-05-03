@@ -37,14 +37,16 @@
               - else
                 %li= link_to "Sign up", new_user_registration_path
                 %li= link_to "Login", new_user_session_path
-            - flash.each do |name, msg|
-              = content_tag :div, msg, id: "flash_#{name}"
-
+        
     .container-fluid
 
       .row-fluid
         .span9
+          .hero-unit
+            %h1 Railbus
+            %p This is a generic rails app that has everything you need to easily create your own custon Ruby on Rails app. Add, delete, and customize any way you like!
           = bootstrap_flash
+        .span3
           = yield
       #footer
         .container.muted.credit 
