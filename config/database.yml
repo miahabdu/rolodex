@@ -15,7 +15,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: railbus_development
+  database: rolodex_development
   pool: 5
   username: abdulmiah
   password:
@@ -41,7 +41,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: railbus_test
+  database: rolodex_test
   pool: 5
   username: abdulmiah
   password:
@@ -49,7 +49,7 @@ test:
 # production:
 #   adapter: postgresql
 #   encoding: unicode
-#   database: railbus_production
+#   database: rolodex_production
 #   pool: 5
 #   username: abdulmiah
 #   password:
