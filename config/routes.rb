@@ -1,4 +1,4 @@
-Railbus::Application.routes.draw do
+Rolodex::Application.routes.draw do
   get "portals/index"
 
   devise_for :users, path_names: {sign_in: "login", sign_out: "logout"}

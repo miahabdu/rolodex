@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Railbus::Application.load_tasks
+Rolodex::Application.load_tasks
