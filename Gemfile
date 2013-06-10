@@ -20,6 +20,8 @@ gem 'squeel'
 gem 'paperclip'
 gem 'bcrypt-ruby', '~> 3.0.0'
 gem 'colorize'
+gem 'tesseract-ocr'
+gem 'rmagick'
 
 # Gems used only for assets and not required
 # in production environments by default.
