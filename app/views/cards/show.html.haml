@@ -8,7 +8,7 @@
   = @card.ocr_info
 %p
   %b Card:
-  = @card.card
+  = image_tag @card.card.url
 
 = link_to 'Edit', edit_card_path(@card)
 \|

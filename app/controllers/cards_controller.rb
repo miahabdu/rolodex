@@ -44,7 +44,7 @@ class CardsController < ApplicationController
     @card.user_id = current_user.id
 
     respond_to do |format|
-      if @card.save
+      if @card.save_with_ocr
         format.html { redirect_to @card, notice: 'Card was successfully created.' }
         format.json { render json: @card, status: :created, location: @card }
       else
