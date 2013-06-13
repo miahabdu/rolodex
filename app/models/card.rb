@@ -1,5 +1,5 @@
 class Card < ActiveRecord::Base
-  attr_accessible :card, :ocr_info, :user_id
+  attr_accessible :card, :ocr_info, :user_id, :card_file_name
 
   has_attached_file :card, :styles => { :medium => "300x300>", :thumb => "100x100>" }, :url => "/images/:class/:style/:basename.:extension"
 
