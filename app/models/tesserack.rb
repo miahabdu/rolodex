@@ -15,6 +15,7 @@ class Tesserack
   def self.tessrack(read_img)
      fname = self.file_name(read_img)
      self.convert_img(read_img)
+     tname = "#{fname}.tiff"
 
      puts "TR:\t#{tname} created"
       
