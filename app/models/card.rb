@@ -7,7 +7,7 @@ class Card < ActiveRecord::Base
   
   def save_with_ocr
     if self.save
-      txt = Tesserack.tessrack(self.card.path)
+      txt = Tesserack.ocr(self.card.path)
       self.ocr_info = txt
       self.save
     else

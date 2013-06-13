@@ -12,7 +12,7 @@ class Tesserack
     img.write("#{fname}.tiff")
   end
 
-  def self.tessrack(read_img)
+  def self.ocr(read_img)
      fname = self.file_name(read_img)
      self.convert_img(read_img)
      tname = "#{fname}.tiff"
