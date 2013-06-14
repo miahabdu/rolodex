@@ -1,23 +1,11 @@
 %h1 Listing cards
 
 %table
-  %tr
-    %th User
-    %th Ocr info
-    %th Card
-    %th
-    %th
-    %th
-
   - @cards.each do |card|
     %tr
-      %td= card.user
-      %td= card.ocr_info
       / %td= card.card
       / %td= link_to 'Show', card
-      %td= link_to image_tag(card.card.url), card
-      %td= link_to 'Edit', edit_card_path(card)
-      %td= link_to 'Destroy', card, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to image_tag(card.card.url(:medium)), card
 
 %br
 
