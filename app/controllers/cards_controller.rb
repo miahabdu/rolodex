@@ -13,12 +13,12 @@ class CardsController < ApplicationController
   # GET /cards/1
   # GET /cards/1.json
   def show
-    @card = Card.find(params[:id])
+    # @card = Card.find(params[:id])
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @card }
-    end
+    # respond_to do |format|
+    #   format.html # show.html.erb
+    #   format.json { render json: @card }
+    # end
   end
 
   # GET /cards/new
@@ -45,8 +45,9 @@ class CardsController < ApplicationController
 
     respond_to do |format|
       if @card.save_with_ocr
-        format.html { redirect_to @card, notice: 'Card was successfully created.' }
+        format.html { redirect_to action: :index }
         format.json { render json: @card, status: :created, location: @card }
+        flash[:notice] = 'Card was successfully created.'
       else
         format.html { render action: "new" }
         format.json { render json: @card.errors, status: :unprocessable_entity }
@@ -61,8 +62,9 @@ class CardsController < ApplicationController
 
     respond_to do |format|
       if @card.update_attributes(card_params)
-        format.html { redirect_to @card, notice: 'Card was successfully updated.' }
+        format.html { redirect_to action: :index }
         format.json { head :no_content }
+        flash[:notice] = 'Card was successfully updated.'
       else
         format.html { render action: "edit" }
         format.json { render json: @card.errors, status: :unprocessable_entity }
