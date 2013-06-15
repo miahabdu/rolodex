@@ -1,0 +1,14 @@
+#newCardModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "newCardModalLabel", :role => "dialog", :tabindex => "-1"}
+  .modal-header
+    %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+    %h3#newCardModalLabel Add New Card
+  .modal-body
+    = simple_form_for(Card.new, remote: true) do |f|
+      = f.error_notification
+
+      .form-inputs
+        = f.file_field :card
+      .modal-footer
+        
+        %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+        %button.btn.btn-primary= :submit

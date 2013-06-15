@@ -1,11 +1,7 @@
-%h1 Listing cards
-
-/ %table
-/   - @cards.each do |card|
-/     %tr
-/       / %td= card.card
-/       / %td= link_to 'Show', card
-/       %td= link_to image_tag(card.card.url(:medium)), card
+%h2.page-header 
+  Your Business Cards
+  .pull-right
+    %button.btn.btn-danger{"data-target" => "#newCardModal", "data-toggle" => "modal", :type => "button"} Add New Card
 
 .row
   .span12
@@ -13,8 +9,6 @@
       - if @cards
         - @cards.each do |card|
           %li= link_to image_tag(card.card.url(:medium)), card
-        
 
-%br
+= render 'new'
 
-= link_to 'New Card', new_card_path
