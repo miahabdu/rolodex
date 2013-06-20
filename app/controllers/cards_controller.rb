@@ -2,8 +2,8 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.all
-
+    @cards = Card.search(params[:search])
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @cards }

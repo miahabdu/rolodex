@@ -14,4 +14,12 @@ class Card < ActiveRecord::Base
       false
     end
   end
+
+  def self.search(search)
+    if search
+      find(:all, :conditions => ['ocr_info LIKE ?', "%#{search}%"])
+    else
+      find(:all)
+    end
+  end
 end

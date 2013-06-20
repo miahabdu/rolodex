@@ -1,8 +1,10 @@
 %h2.page-header 
   Your Business Cards
   .pull-right
+    =form_tag cards_path, :method => 'get', :class => 'form-horizontal' do
+      = text_field_tag :search, params[:search]
+      = submit_tag "Search", :name => nil, :class => 'btn'
     %button.btn.btn-danger{"data-target" => "#newCardModal ", "data-toggle" => "modal", :type => "button"} Add New Card
-
 .row
   .span12
     %ul.thumbnails
