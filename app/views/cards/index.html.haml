@@ -1,40 +1,46 @@
-%h2.page-header 
-  Your Business Cards
-  .pull-right
-    =form_tag cards_path, :method => 'get', :class => 'form-horizontal' do
-      = text_field_tag :search, params[:search]
-      = submit_tag "Search", :name => nil, :class => 'btn'
-    %button.btn.btn-danger{"data-target" => "#newCardModal ", "data-toggle" => "modal", :type => "button"} Add New Card
-.row
-  .span12
-    %ul.thumbnails
-      - if @cards
-        - @cards.each do |c|
-          %li{"data-target" => "##{c.id} #showCardModal", "data-toggle" => "modal", :type => "button"}= image_tag(c.card.url(:medium))
-          %div{:id => "#{c.id}"}
-            #showCardModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "showCardModalLabel", :role => "dialog", :tabindex => "-1"}
-              .modal-header
-                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-                %h3#showCardModalLabel View Card
-              .modal-body
-                = image_tag c.card.url(:large)
-                .modal-footer
-                  .row
-                    %button.btn.btn-primary.btn-block{"data-target" => "##{c.id} #editCardModal", "data-toggle" => "modal", :type => "button", "data-dismiss" => "modal"} Edit
-                  .row
-                    = link_to 'Destroy', (Card.find(c.id)), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-block'
-            #editCardModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "editCardModalLabel", :role => "dialog", :tabindex => "-1"}
-              .modal-header
-                %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
-                %h3#editCardModalLabel Edit Card
-              .modal-body
-                = simple_form_for(Card.find(c.id), remote: true) do |f|
-                  = f.error_notification
+  
+.container-fluid
+  .row-fluid
+    %h2.page-header 
+      Your Business Cards
+      .pull-right
+        %button.btn.btn-danger{"data-target" => "#newCardModal ", "data-toggle" => "modal", :type => "button"} Add New Card
 
-                  .form-inputs
-                    = f.file_field :card
+  .row-fluid
+    .pull-right.controls.controls-row{:style => 'margin-top: -20px;'}
+      =form_tag cards_path, :method => 'get', :class => 'form-horizontal form-search' do
+        .input-append
+          = text_field_tag :search, params[:search], :class => 'search-query input-medium'
+          = submit_tag "Search", :name => nil, :class => 'btn'
+    .span12
+      %ul.thumbnails
+        - if @cards
+          - @cards.each do |c|
+            %li{"data-target" => "##{c.id} #showCardModal", "data-toggle" => "modal", :type => "button"}= image_tag(c.card.url(:medium))
+            %div{:id => "#{c.id}"}
+              #showCardModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "showCardModalLabel", :role => "dialog", :tabindex => "-1"}
+                .modal-header
+                  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                  %h3#showCardModalLabel View Card
+                .modal-body
+                  = image_tag c.card.url(:large)
                   .modal-footer
-                    
-                    %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
-                    %button.btn.btn-primary= :submit
-= render 'new'
+                    .row
+                      %button.btn.btn-primary.btn-block{"data-target" => "##{c.id} #editCardModal", "data-toggle" => "modal", :type => "button", "data-dismiss" => "modal"} Edit
+                    .row
+                      = link_to 'Destroy', (Card.find(c.id)), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-block'
+              #editCardModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "editCardModalLabel", :role => "dialog", :tabindex => "-1"}
+                .modal-header
+                  %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+                  %h3#editCardModalLabel Edit Card
+                .modal-body
+                  = simple_form_for(Card.find(c.id), remote: true) do |f|
+                    = f.error_notification
+
+                    .form-inputs
+                      = f.file_field :card
+                    .modal-footer
+                      
+                      %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+                      %button.btn.btn-primary= :submit
+  = render 'new'
