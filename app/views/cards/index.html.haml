@@ -1,22 +1,23 @@
   
-.container-fluid
-  .row-fluid
+.container
+  .row
     %h2.page-header 
       Your Business Cards
-      .pull-right
-        %button.btn.btn-danger{"data-target" => "#newCardModal ", "data-toggle" => "modal", :type => "button"} Add New Card
+      %button.btn.btn-danger{"data-target" => "#newCardModal ", "data-toggle" => "modal", :type => "button"} Add New Card
 
-  .row-fluid
+  .row
     .pull-right.controls.controls-row{:style => 'margin-top: -20px;'}
       =form_tag cards_path, :method => 'get', :class => 'form-horizontal form-search' do
         .input-append
           = text_field_tag :search, params[:search], :class => 'search-query input-medium'
           = submit_tag "Search", :name => nil, :class => 'btn'
+  .row
     .span12
       %ul.thumbnails
         - if @cards
           - @cards.each do |c|
-            %li{"data-target" => "##{c.id} #showCardModal", "data-toggle" => "modal", :type => "button"}= image_tag(c.card.url(:medium))
+            %li.span3
+              %a.thumbnail{"data-target" => "##{c.id} #showCardModal", "data-toggle" => "modal", :type => "button", :style => "width:250px; height:150px; background-color:white"}= image_tag(c.card.url(:medium))
             %div{:id => "#{c.id}"}
               #showCardModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "showCardModalLabel", :role => "dialog", :tabindex => "-1"}
                 .modal-header
@@ -43,4 +44,4 @@
                       
                       %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
                       %button.btn.btn-primary= :submit
-  = render 'new'
+= render 'new'
