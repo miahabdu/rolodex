@@ -9,7 +9,7 @@ class Tesserack
   def self.convert_img(read_img)
     img = Magick::Image::read(read_img)[0]
     img.deskew
-    img.quantize(256, Magick::GRAYColorspace)
+    img.quantize(256, Magick::GRAYColorspace).contrast(true)
     img.write("#{file_name(read_img)}.tiff")
   end
 
