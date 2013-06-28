@@ -7,24 +7,28 @@ class Tesserack
   end
 
   def self.convert_img(read_img)
-    fname = self.file_name(read_img)
     img = Magick::Image::read(read_img)[0]
-    img.write("#{fname}.tiff")
+    img.deskew
+    img.quantize(256, Magick::GRAYColorspace)
+    img.write("#{file_name(read_img)}.tiff")
   end
 
   def self.ocr(read_img)
-     fname = self.file_name(read_img)
-     self.convert_img(read_img)
-     tname = "#{fname}.tiff"
+     convert_img(read_img)
+     tname = "#{file_name(read_img)}.tiff"
 
      puts "TR:\t#{tname} created"
       
      # Run tesseract
-     tc = "tesseract #{tname} #{fname}"
+     tc = "tesseract #{tname} #{file_name(read_img)}"
      puts "TR:\t#{tc}"
      `#{tc}`
      
-     # File.delete(tname) unless keep_temp==true
-     File.open("#{fname}.txt"){|txt| txt.read}
+     File.delete(tname)
+     File.open("#{file_name(read_img)}.txt"){|txt| txt.read} rescue "OCR Info couldn't be scanned"
+  end
+
+  def self.delete_tmp_txt(read_img)
+    File.delete("#{file_name(read_img)}.txt")
   end
 end

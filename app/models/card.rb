@@ -8,7 +8,8 @@ class Card < ActiveRecord::Base
   def save_with_ocr
     if self.save
       txt = Tesserack.ocr(self.card.path)
-      self.ocr_info = txt
+      self.ocr_info = txt rescue "OCR Info couldn't be scanned"
+      Tesserack.delete_tmp_txt(self.card.path) rescue nil
       self.save
     else
       false
