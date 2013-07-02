@@ -61,9 +61,9 @@ gem 'rails', '3.2.13'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-
+gem 'unicorn'
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 # gem 'debugger'
