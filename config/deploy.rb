@@ -3,7 +3,6 @@ require "bundler/capistrano"
 server "192.241.201.218", :web, :app, :db, primary: true
 
 set :application, "rolodex"
-default_run_options[:pty] = true
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
