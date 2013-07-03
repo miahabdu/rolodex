@@ -55,13 +55,14 @@ end
 
 group :staging, :production do
   gem 'newrelic_rpm'
+  gem 'unicorn'
 end
 
 gem 'rails', '3.2.13'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
-gem 'unicorn'
+
 # Deploy with Capistrano
 gem 'capistrano'
 
