@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "192.241.201.218", :web, :app, :db, primary: true
+server "198.199.83.165", :web, :app, :db, primary: true
 
 set :application, "rolodex"
 set :user, "deployer"
