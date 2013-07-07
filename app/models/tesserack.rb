@@ -1,6 +1,6 @@
 class Tesserack
   require 'rubygems'
-  require 'rmagick'
+  require 'RMagick'
 
   def self.file_name(read_img)
     read_img.chomp(File.extname(read_img))
