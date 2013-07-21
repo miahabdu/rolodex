@@ -1,3 +1,5 @@
+require 'tesserack'
+
 class Card < ActiveRecord::Base
   attr_accessible :card, :ocr_info, :user_id, :card_file_name
 
