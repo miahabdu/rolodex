@@ -14,8 +14,8 @@
   .row
     .span12
       %ul.thumbnails
-        - if @cards
-          - @cards.each do |c|
+        - if current_user.cards
+          - current_user.cards.each do |c|
             %li.span3
               %a.thumbnail{"data-target" => "##{c.id} #showCardModal", "data-toggle" => "modal", :type => "button", :style => "width:250px; height:150px; background-color:white"}= image_tag(c.card.url(:medium))
             %div{:id => "#{c.id}"}
