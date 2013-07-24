@@ -41,3 +41,18 @@
   margin-bottom: 15px;
   padding: 7px 9px;
 }
+
+.card_thumbnail {
+  width:250px; 
+  height:150px; 
+  background-color: white;
+}
+.card_view {
+  width:500px; 
+  text-align:center;
+}
+.card_button {
+  width: 500px; 
+  margin-left: auto; 
+  margin-right: auto;
+}
