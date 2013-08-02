@@ -37,6 +37,8 @@
 
                     .form-inputs
                       = f.file_field :card
+                      = f.label :tag_list, "Tags (separated by commas)"
+                      = f.text_field :tag_list
                     .modal-footer
                       
                       %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close

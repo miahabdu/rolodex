@@ -1,7 +1,9 @@
 require 'tesserack'
 
 class Card < ActiveRecord::Base
-  attr_accessible :card, :ocr_info, :user_id, :card_file_name
+  attr_accessible :card, :ocr_info, :user_id, :card_file_name, :tag_list
+  has_many :card_taggings
+  has_many :card_tags, through: :card_taggings
 
   has_attached_file :card, :styles => { :medium => "300x200>", :large => "500x500>" }, :url => "/images/:class/:style/:basename.:extension"
 
@@ -23,6 +25,25 @@ class Card < ActiveRecord::Base
       find(:all, :conditions => ['ocr_info LIKE ?', "%#{search}%"])
     else
       find(:all)
+    end
+  end
+  
+  def self.tagged_with(name)
+    CardTag.find_by_name!(name).cards
+  end
+
+  def self.tag_counts
+    CardTag.select("card_tags.*, count(card_taggings.card_tag_id) as count").
+      joins(:cad_taggings).group("card_taggings.card_tag_id")
+  end
+
+  def tag_list
+    card_tags.map(&:name).join(", ")
+  end
+
+  def tag_list=(names)
+    self.card_tags = names.split(",").map do |n|
+      CardTag.where(name: n.strip).first_or_create!
     end
   end
 end

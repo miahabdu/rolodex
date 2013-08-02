@@ -90,6 +90,6 @@ class CardsController < ApplicationController
     # params.require(:person).permit(:name, :age)
     # Also, you can specialize this method with per-user checking of permissible attributes.
     def card_params
-      params.require(:card).permit(:card, :ocr_info, :user)
+      params.require(:card).permit(:card, :ocr_info, :user, :tag_list)
     end
 end

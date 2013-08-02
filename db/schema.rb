@@ -11,7 +11,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130628181016) do
+ActiveRecord::Schema.define(:version => 20130802010537) do
+
+  create_table "card_taggings", :force => true do |t|
+    t.integer  "card_tag_id"
+    t.integer  "card_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "card_taggings", ["card_id"], :name => "index_card_taggings_on_card_id"
+  add_index "card_taggings", ["card_tag_id"], :name => "index_card_taggings_on_card_tag_id"
+
+  create_table "card_tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "cards", :force => true do |t|
     t.integer  "user_id"
@@ -22,6 +38,22 @@ ActiveRecord::Schema.define(:version => 20130628181016) do
     t.datetime "card_updated_at"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+  end
+
+  create_table "taggings", :force => true do |t|
+    t.integer  "tag_id"
+    t.integer  "article_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "taggings", ["article_id"], :name => "index_taggings_on_article_id"
+  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
+
+  create_table "tags", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
