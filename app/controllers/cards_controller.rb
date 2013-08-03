@@ -86,7 +86,7 @@ class CardsController < ApplicationController
     @card = Card.find(params[:id])
     @card.card_taggings.each do |tag|
       c = CardTag.joins(:cards).where(card_taggings: {id: tag.id})
-      c.first.destroy
+      c.first.destroy rescue nil
     end
     @card.card_taggings.destroy_all
     @card.destroy

@@ -4,6 +4,9 @@
     %h2.page-header 
       Your Business Cards
       %button.btn.btn-danger{"data-target" => "#newCardModal ", "data-toggle" => "modal", :type => "button"} Add New Card
+      .pull-right.controls.controls-row      
+        =form_tag( { action: :index}, method: :get, :class => 'form-horizontal', id: 'card_tag_select') do
+          = select_tag(:card_tag, options_for_select(@user_tags, ''), :prompt => "Select tag categorie...", :onchange => 'this.form.submit()',)
 
   .row
     .pull-right.controls.controls-row{:style => 'margin-top: -20px;'}
@@ -11,9 +14,6 @@
         .input-append
           = text_field_tag :search, params[:search], :class => 'search-query input-medium'
           = submit_tag "Search", :name => nil, :class => 'btn'
-    .pull-right.controls.controls-row{:style => 'margin-top: -20px;padding-right: 5px'}      
-      =form_tag( { action: :index}, method: :get, :class => 'form-horizontal', id: 'card_tag_select') do
-        = select_tag(:card_tag, options_for_select(@user_tags, ''), :prompt => "Select tag...", :onchange => 'this.form.submit()',)
       
   .row
     .span12
