@@ -23,10 +23,12 @@
                 .modal-header
                   %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
                   %h3#showCardModalLabel View Card
-                .modal-body
-                  = image_tag c.card.url(:large)
-                  - c.card_tags.each do |tag|
-                    %p= "#{tag.name}"
+                .modal-body{ :style => "overflow-y: visible;" }
+                  = image_tag c.card.url(:large)  
+                  %ul.card_tags
+                    - c.card_tags.each do |tag|
+                      %li
+                        %a= "#{tag.name}"
                   %button.btn.btn-primary.btn-block{"data-target" => "##{c.id} #editCardModal", "data-toggle" => "modal", :type => "button", :style => "width:500px; margin-left:auto; margin-right:auto;", "data-dismiss" => "modal"} Edit
                   = link_to 'Delete', (Card.find(c.id)), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-block', :style => "width:500px; margin-left:auto; margin-right:auto;"
               #editCardModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "editCardModalLabel", :role => "dialog", :tabindex => "-1"}
