@@ -39,7 +39,7 @@
                   %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
                   %h3#editCardModalLabel Edit Card
                 .modal-body
-                  = simple_form_for(Card.find(c.id), remote: true) do |f|
+                  = simple_form_for(Card.find(c.id)) do |f|
                     = f.error_notification
 
                     .form-inputs
