@@ -76,6 +76,11 @@ class CardsController < ApplicationController
   # DELETE /cards/1.json
   def destroy
     @card = Card.find(params[:id])
+    @card.card_taggings.each do |tag|
+      c = CardTag.joins(:cards).where(card_taggings: {id: tag.id})
+      c.first.destroy
+    end
+    @card.card_taggings.destroy_all
     @card.destroy
 
     respond_to do |format|
