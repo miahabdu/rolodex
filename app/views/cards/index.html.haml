@@ -6,7 +6,7 @@
       %button.btn.btn-danger{"data-target" => "#newCardModal ", "data-toggle" => "modal", :type => "button"} Add New Card
       .pull-right.controls.controls-row      
         =form_tag( { action: :index}, method: :get, :class => 'form-horizontal', id: 'card_tag_select') do
-          = select_tag(:card_tag, options_for_select(@user_tags, ''), :prompt => "Select tag categorie...", :onchange => 'this.form.submit()',)
+          = select_tag(:card_tag, options_for_select(@user_tags, ''), :prompt => "Select tag category...", :onchange => 'this.form.submit()',)
 
   .row
     .pull-right.controls.controls-row{:style => 'margin-top: -20px;'}
