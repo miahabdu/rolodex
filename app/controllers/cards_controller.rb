@@ -2,7 +2,7 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = Card.search(params[:search])
+    @cards = current_user.cards.search(params[:search])
     
     respond_to do |format|
       format.html # index.html.erb
