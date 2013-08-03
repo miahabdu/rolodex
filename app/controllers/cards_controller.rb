@@ -2,7 +2,15 @@ class CardsController < ApplicationController
   # GET /cards
   # GET /cards.json
   def index
-    @cards = current_user.cards.search(params[:search])
+    
+    if params[:card_tag]
+      @cards = current_user.cards.tagged_with(params[:card_tag])
+    else
+      @cards = current_user.cards.search(params[:search])
+    end
+    @user_tags = current_user.cards.map(&:card_tags).flatten.map(&:name).uniq
+    # tag = CardTag.find(c)
+    # @cardtag_list = tag.map(&:name)
     
     respond_to do |format|
       format.html # index.html.erb

@@ -1,6 +1,6 @@
 Rolodex::Application.routes.draw do
   resources :cards
-
+  get 'card_tags/:card_tag', to: 'cards#index', as: :card_tag
 
   get "portals/index"
 

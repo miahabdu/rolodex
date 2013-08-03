@@ -7,6 +7,9 @@
 
   .row
     .pull-right.controls.controls-row{:style => 'margin-top: -20px;'}
+      =form_tag( { action: :index}, method: :get, :class => 'form-horizontal', id: 'card_tag_select') do
+        = select_tag(:card_tag, options_for_select(@user_tags), :prompt => "Select tag...", :onchange => 'this.form.submit()',)
+      
       =form_tag cards_path, :method => 'get', :class => 'form-horizontal form-search' do
         .input-append
           = text_field_tag :search, params[:search], :class => 'search-query input-medium'
@@ -27,8 +30,7 @@
                   = image_tag c.card.url(:large)  
                   %ul.card_tags
                     - c.card_tags.each do |tag|
-                      %li
-                        %a= "#{tag.name}"
+                      %li= link_to "#{tag.name}", card_tag_path(tag.name)
                   %button.btn.btn-primary.btn-block{"data-target" => "##{c.id} #editCardModal", "data-toggle" => "modal", :type => "button", :style => "width:500px; margin-left:auto; margin-right:auto;", "data-dismiss" => "modal"} Edit
                   = link_to 'Delete', (Card.find(c.id)), :method => :delete, :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger btn-block', :style => "width:500px; margin-left:auto; margin-right:auto;"
               #editCardModal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "editCardModalLabel", :role => "dialog", :tabindex => "-1"}
